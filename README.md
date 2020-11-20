@@ -12,4 +12,5 @@ It is best to perform one task within 3 hours. Visualize it.
 
 # Image
 
-
+▼ver.01
+![AppImage](https://github.com/toukyou1990/Timer/blob/test/AppImage.png)
