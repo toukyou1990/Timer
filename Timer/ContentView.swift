@@ -22,18 +22,14 @@ struct ContentView: View {
     let timer = Timer.publish(every: 1, on: .main , in: .common).autoconnect()
     
     var body: some View {
-        
-      
+
         
     ZStack {
             Color.black
                 .opacity(0.02)
                 .edgesIgnoringSafeArea(.all)
-       
     VStack(){
-        
         ZStack{
-        
             Circle()
                 .stroke(Color.gray.opacity(0.2), style: StrokeStyle(lineWidth: lineWith, lineCap: .round))
             Circle()
@@ -47,7 +43,6 @@ struct ContentView: View {
                 }.frame(width: radius * 2, height: radius * 2)
         
         VStack(){
-            
             Text("Memo")
                 .font(.system(size: 30, weight: .bold, design: .rounded ))
                 .multilineTextAlignment(.leading)
