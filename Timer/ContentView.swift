@@ -83,7 +83,6 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 //▼道筋(仮)
-
 //- 60秒のカウントダウンを3時間に変更
 //- カウントダウンのカラーを30分以下で赤色
 //- テキスト入力後Startボタンをタップするとカウントダウン開始
