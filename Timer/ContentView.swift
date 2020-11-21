@@ -17,8 +17,8 @@ struct ContentView: View {
     @State private var timeRemaining: CGFloat = defaultTimeRemaining
     @State private var textField = ""
     @State var timeString = ""
+    @State var isShown = false
 
-    
     let timer = Timer.publish(every: 1, on: .main , in: .common).autoconnect()
     
     var body: some View {
@@ -64,16 +64,31 @@ struct ContentView: View {
                             isActive = false
                             timeRemaining = defaultTimeRemaining
                         })
-                }
 
-            }.onReceive(timer, perform: { _ in guard isActive else { return }
-                if timeRemaining > 0 {
-                    timeRemaining -= 1
-                } else {
-                    isActive = false
-                    timeRemaining = defaultTimeRemaining
-                }
-            })
+                }.onReceive(timer, perform: { _ in guard isActive else { return }
+                    if timeRemaining > 0 {
+                        timeRemaining -= 1
+                    } else {
+                        isActive = false
+                        timeRemaining = defaultTimeRemaining
+                    }
+                })
+
+                Button(action: { //リセットダイアログの表示。頑張りどころ→このボタンにResetの効果を与えたい
+                    self.isShown = true
+                }) {
+                    Text("Show ActionSheet")
+                }.actionSheet(isPresented: $isShown, content: {
+                    ActionSheet(
+                        title: Text("Remove the current task?"),
+                        message: Text("Deleting it allows you to enter a new task."),
+                        buttons: [
+                            .destructive(Text("Remove")),
+                            .cancel()]
+                    ) //このあたりにリセットの効果を書いていくのでググって対応する
+                })
+
+            }
         }
     }
 
