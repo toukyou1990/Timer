@@ -58,6 +58,8 @@ struct ContentView: View {
                             isActive.toggle()
                         })
 
+
+                    //リセットの処理
                     Label("Reset", systemImage: "stop.fill")
                         .foregroundColor(.red)
                         .onTapGesture(perform: {
@@ -74,7 +76,10 @@ struct ContentView: View {
                     }
                 })
 
-                Button(action: { //リセットダイアログの表示。頑張りどころ→このボタンにResetの効果を与えたい
+                //リセットの処理はここまでこの処理をボタンに移植したい
+
+                //リセットダイアログの表示。頑張りどころ→このボタンにResetの効果を与えたい
+                Button(action: {
                     self.isShown = true
                 }) {
                     Text("Show ActionSheet")
@@ -83,11 +88,13 @@ struct ContentView: View {
                         title: Text("Remove the current task?"),
                         message: Text("Deleting it allows you to enter a new task."),
                         buttons: [
-                            .destructive(Text("Remove")),
+                            .destructive(Text("Remove")){
+                                //ここにリセットの処理を書いていくのでググって対応する
+                            },
                             .cancel()]
-                    ) //このあたりにリセットの効果を書いていくのでググって対応する
+                    )
                 })
-
+                //ここまでがダイアログの処理
             }
         }
     }
