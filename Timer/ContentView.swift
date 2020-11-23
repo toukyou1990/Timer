@@ -8,11 +8,11 @@
 import SwiftUI
 
 let defaultTimeRemaining: CGFloat = 60 //時間//
-let lineWith: CGFloat = 20 //円の太さ//
-let radius: CGFloat = 130 //円のサイズ//
+let lineWith: CGFloat = 12 //円の太さ//
+let radius: CGFloat = 100 //円のサイズ//
 
 struct ContentView: View {
-    @State private var isActive = false  //真ん中の数字//
+    @State private var isActive = false
     @State private var timeRemaining: CGFloat = defaultTimeRemaining
     @State private var textField = ""
     @State var timeString = ""
@@ -39,68 +39,50 @@ struct ContentView: View {
                     
                     Text("\(Int(timeRemaining))")
                         .font(.system(size: 60, weight: .bold, design: .rounded))
-                        .foregroundColor(Color.black .opacity(0.8))
+                        .foregroundColor(Color.black)
                         .multilineTextAlignment(.center)
                         .lineLimit(0)
                         .padding(.all)
                 }.frame(width: radius * 2.5, height: radius * 2.5)
-                
-                VStack(){
+
+
+                //ここからmemoとTextFieldの処理
+                VStack(spacing: 0){
                     Text("Memo")
-                        .font(.system(size: 30, weight: .bold, design: .rounded ))
+                        .font(.system(size: 24, weight: .bold, design: .rounded ))
                         .multilineTextAlignment(.leading)
                         .padding(.leading, 24)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    TextField("NextActionaaa", text: $textField )
+
+                    TextField("NextActiona", text: $textField )
+                        .padding(.top, 8.0)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .font(.system(size: 40, weight: .bold, design: .default ))
+                        .font(.system(size: 32, weight: .bold, design: .rounded ))
                         .padding(.horizontal, 24)
-                    
-                    Button(action: {
-                        print("Rounded Button")
-                    }, label: {
-                        Text("Start!")
-                            .padding(16)
-                            .font(.system(size: 24, weight: .bold, design: .rounded))
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .foregroundColor(Color.white)
-                            .cornerRadius(10)
-                            .padding(24)
-                    })
                 }
-                
-                HStack(){
-                    
-                    Label("\(isActive ? "Stop" : "Play")", systemImage: "\(isActive ? "Pause.fill" : "play.fill")")
-                        .foregroundColor(isActive ? .red : .yellow).font(.title).onTapGesture(perform: {
-                            isActive.toggle()
-                        })
-                    
-                    
-                    //リセットの処理
-                    Label("Reset", systemImage: "stop.fill")
-                        .foregroundColor(.red)
-                        .onTapGesture(perform: {
-                            isActive = false
-                            timeRemaining = defaultTimeRemaining
-                        })
-                    
-                }.onReceive(timer, perform: { _ in guard isActive else { return }
-                    if timeRemaining > 0 {
-                        timeRemaining -= 1
-                    } else {
-                        isActive = false
-                        timeRemaining = defaultTimeRemaining
-                    }
+                //ここまでmemoとTextFieldの処理
+
+
+                //ここからStartbutton
+                Button(action: {
+                    // タップ時の処理を実装
+                    self.isActive = true
                 })
-                //リセットの処理はここまで.この処理をボタンに移植したい
+                {
+                    Text("Start!")
+                        .padding(16)
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                        .padding([.top, .leading, .trailing], 24)
+                }
             }
-            
+            //ここまでStartbutton
+
+            //TabViewを下部に画面いっぱいに表示
             VStack(spacing: 0) {
-                
-                Spacer()
                 Spacer()
                 Rectangle()
                     .frame(height: 0.25, alignment: .top)
@@ -108,15 +90,49 @@ struct ContentView: View {
                 Color.white
                     .edgesIgnoringSafeArea(.top)
                     .frame(height:0)
-                TabView()
-                
-                
-                
+                HStack {
+
+                    VStack(alignment: .leading) {
+                        Button(action: {
+                        }){
+                            Image(systemName: "info.circle")
+                                .resizable()
+                                .foregroundColor(/*@START_MENU_TOKEN@*/.black/*@END_MENU_TOKEN@*/)
+                                .frame(width: 24.0, height: 24.0, alignment: .leading)
+                        }
+                    }
+                    Spacer()
+
+                    //RemoveButtonの表示。このボタンにResetの効果を与えたい
+                    Button(action: {
+                        self.isShown = true
+                    }) {
+                        Text("Remove")
+                            .foregroundColor(.red)
+                    }.actionSheet(isPresented: $isShown, content: {
+                        ActionSheet(
+                            title: Text("Remove the current task?"),
+                            message: Text("Deleting it allows you to enter a new task."),
+                            buttons: [
+                                .destructive(Text("Remove")){
+                                    self.isActive = false
+                                    timeRemaining = defaultTimeRemaining
+                                    //ここにリセットの処理を書いていくのでググって対応する
+                                },
+                                .cancel()
+                            ]
+                        )
+                    })
+                    //ここまでがRemoveButtonの処理
+
+                }
+                .padding()
+                .background(Color.white .edgesIgnoringSafeArea(.all))
             }
         }
+        //ここまでがTabView
     }
 }
-
 
 
 struct ContentView_Previews: PreviewProvider {

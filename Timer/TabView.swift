@@ -12,17 +12,20 @@ struct TabView: View {
     @State var isShown = false
     
     var body: some View {
+
         HStack {
             
             VStack(alignment: .leading) {
-                
-                
-                Image(systemName: "info.circle") // システムアイコンを指定
-                    .resizable()
-                    .frame(width: 24.0, height: 24.0, alignment: .leading)
+                Button(action: {
+                }){
+                    Image(systemName: "info.circle")
+                        .resizable()
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.black/*@END_MENU_TOKEN@*/)
+                        .frame(width: 24.0, height: 24.0, alignment: .leading)
+                }
             }
             Spacer()
-            
+
             //RemoveButtonの表示。このボタンにResetの効果を与えたい
             Button(action: {
                 self.isShown = true
@@ -37,14 +40,15 @@ struct TabView: View {
                         .destructive(Text("Remove")){
                             //ここにリセットの処理を書いていくのでググって対応する
                         },
-                        .cancel()]
+                        .cancel()
+                    ]
                 )
             })
-            //ここまでがダイアログの処理
+            //ここまでがRemoveButtonの処理
             
         }
         .padding()
-        .background(Color.white.edgesIgnoringSafeArea(.all))
+        .background(Color.white .edgesIgnoringSafeArea(.all))
     }
     
     
