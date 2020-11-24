@@ -24,9 +24,11 @@ struct ContentView: View {
         ZStack {
             
             Color.black
-                .opacity(0.05)
+                .opacity(0.01)
                 .edgesIgnoringSafeArea(.all)
             VStack(){
+
+                //ここからサークルの表示と処理。
                 ZStack{
                     Circle()
                         .stroke(Color.blue.opacity(0.2), style: StrokeStyle(lineWidth: lineWith, lineCap: .round))
@@ -35,7 +37,7 @@ struct ContentView: View {
                         .stroke(timeRemaining > 6 ? Color.blue : timeRemaining > 3 ? Color.yellow : Color.red , style: StrokeStyle(lineWidth: lineWith, lineCap: .round))
                         .rotationEffect(.degrees(-90))
                         .animation(.easeInOut)
-                    
+
                     Text("\(Int(timeRemaining))")
                         .font(.system(size: 60, weight: .bold, design: .rounded))
                         .foregroundColor(Color.black)
@@ -43,6 +45,7 @@ struct ContentView: View {
                         .lineLimit(0)
                         .padding(.all)
                 }.frame(width: radius * 2.5, height: radius * 2.5)
+                //ここまでサークルの表示と処理。処理をわける
 
 
                 //ここからmemoとTextFieldの処理
@@ -58,15 +61,13 @@ struct ContentView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .font(.system(size: 32, weight: .bold, design: .rounded ))
                         .padding(.horizontal, 24)
-
                     //ここまでmemoとTextFieldの処理
 
 
                     //ここからStartbutton
                     Button(action: {
                         self.isActive.toggle()
-                    })
-                    {
+                    }) {
                         Text("Start!")
                             .padding(16)
                             .font(.system(size: 24, weight: .bold, design: .rounded))
@@ -78,6 +79,7 @@ struct ContentView: View {
                     }
                 }}
             //ここまでStartbutton
+
 
             //TabViewを下部に画面いっぱいに表示
             VStack(spacing: 0) {
@@ -93,56 +95,55 @@ struct ContentView: View {
                     VStack(alignment: .leading) {
                         Button(action: {
                             self.showingModal.toggle()
-                            }) {
-                                Image(systemName: "info.circle")
-                                    .resizable()
-                                    .foregroundColor(.black)
-                                    .frame(width: 24.0, height: 24.0, alignment: .leading)
+                        }) {
+                            Image(systemName: "info.circle")
+                                .resizable()
+                                .foregroundColor(.black)
+                                .frame(width: 24.0, height: 24.0, alignment: .leading)
                         }
-                                    .sheet(isPresented: $showingModal) {
-                                        WorkThroughView()
-
-                            }
-                    }
-                            Spacer()
-
-                            //RemoveButtonの表示。このボタンにResetの効果を与えたい
-                            Button(action: {
-                                self.isShown = true
-                            }) {
-                                Text("Remove")
-                                    .foregroundColor(.red)
-                            }.actionSheet(isPresented: $isShown, content: {
-                                ActionSheet(
-                                    title: Text("Remove the current task?"),
-                                    message: Text("Deleting it allows you to enter a new task."),
-                                    buttons: [
-                                        .destructive(Text("Remove")){
-                                            self.isActive = false
-                                            timeRemaining = defaultTimeRemaining
-                                            //ここにリセットの処理を書いていくのでググって対応する
-                                        },
-                                        .cancel()
-                                    ]
-                                )
-                            })
-                            //ここまでがRemoveButtonの処理
-
+                        .sheet(isPresented: $showingModal) {
+                            WorkThroughView()
                         }
-                        .padding()
-                        .background(Color.white .edgesIgnoringSafeArea(.all))
                     }
+                    Spacer()
+
+
+                    //RemoveButtonの表示。このボタンにResetの効果を与えたい
+                    Button(action: {
+                        self.isShown = true
+                    }) {
+                        Text("Remove")
+                            .foregroundColor(.red)
+                    }.actionSheet(isPresented: $isShown, content: {
+                        ActionSheet(
+                            title: Text("Remove the current task?"),
+                            message: Text("Deleting it allows you to enter a new task."),
+                            buttons: [
+                                .destructive(Text("Remove")){
+                                    self.isActive = false
+                                    timeRemaining = defaultTimeRemaining
+                                    //ここにリセットの処理を書いていくのでググって対応する
+                                },
+                                .cancel()
+                            ]
+                        )
+                    })
+                    //ここまでがRemoveButtonの処理
+
                 }
-                //ここまでがTabView
+                .padding()
+                .background(Color.white .edgesIgnoringSafeArea(.all))
             }
         }
+        //ここまでがTabView
+    }
+}
 
-
-        struct ContentView_Previews: PreviewProvider {
-            static var previews: some View {
-                ContentView()
-            }
-        }
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
 
 
 //▼道筋(仮)
