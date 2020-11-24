@@ -17,9 +17,8 @@ struct ContentView: View {
     @State private var textField = ""
     @State var timeString = ""
     @State var isShown = false
-    
+    @State private var showingModal = false
     let timer = Timer.publish(every: 1, on: .main , in: .common).autoconnect()
-    
     var body: some View {
         
         ZStack {
@@ -54,31 +53,30 @@ struct ContentView: View {
                         .padding(.leading, 24)
                         .frame(maxWidth: .infinity, alignment: .leading)
 
-                    TextField("NextActiona", text: $textField )
+                    TextField("NextAction", text: $textField )
                         .padding(.top, 8.0)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .font(.system(size: 32, weight: .bold, design: .rounded ))
                         .padding(.horizontal, 24)
-                }
-                //ここまでmemoとTextFieldの処理
+
+                    //ここまでmemoとTextFieldの処理
 
 
-                //ここからStartbutton
-                Button(action: {
-                    // タップ時の処理を実装
-                    self.isActive = true
-                })
-                {
-                    Text("Start!")
-                        .padding(16)
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .foregroundColor(Color.white)
-                        .cornerRadius(10)
-                        .padding([.top, .leading, .trailing], 24)
-                }
-            }
+                    //ここからStartbutton
+                    Button(action: {
+                        self.isActive.toggle()
+                    })
+                    {
+                        Text("Start!")
+                            .padding(16)
+                            .font(.system(size: 24, weight: .bold, design: .rounded))
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(10)
+                            .padding([.top, .leading, .trailing], 24)
+                    }
+                }}
             //ここまでStartbutton
 
             //TabViewを下部に画面いっぱいに表示
@@ -94,52 +92,57 @@ struct ContentView: View {
 
                     VStack(alignment: .leading) {
                         Button(action: {
-                        }){
-                            Image(systemName: "info.circle")
-                                .resizable()
-                                .foregroundColor(/*@START_MENU_TOKEN@*/.black/*@END_MENU_TOKEN@*/)
-                                .frame(width: 24.0, height: 24.0, alignment: .leading)
+                            self.showingModal.toggle()
+                            }) {
+                                Image(systemName: "info.circle")
+                                    .resizable()
+                                    .foregroundColor(.black)
+                                    .frame(width: 24.0, height: 24.0, alignment: .leading)
                         }
+                                    .sheet(isPresented: $showingModal) {
+                                        WorkThroughView()
+
+                            }
                     }
-                    Spacer()
+                            Spacer()
 
-                    //RemoveButtonの表示。このボタンにResetの効果を与えたい
-                    Button(action: {
-                        self.isShown = true
-                    }) {
-                        Text("Remove")
-                            .foregroundColor(.red)
-                    }.actionSheet(isPresented: $isShown, content: {
-                        ActionSheet(
-                            title: Text("Remove the current task?"),
-                            message: Text("Deleting it allows you to enter a new task."),
-                            buttons: [
-                                .destructive(Text("Remove")){
-                                    self.isActive = false
-                                    timeRemaining = defaultTimeRemaining
-                                    //ここにリセットの処理を書いていくのでググって対応する
-                                },
-                                .cancel()
-                            ]
-                        )
-                    })
-                    //ここまでがRemoveButtonの処理
+                            //RemoveButtonの表示。このボタンにResetの効果を与えたい
+                            Button(action: {
+                                self.isShown = true
+                            }) {
+                                Text("Remove")
+                                    .foregroundColor(.red)
+                            }.actionSheet(isPresented: $isShown, content: {
+                                ActionSheet(
+                                    title: Text("Remove the current task?"),
+                                    message: Text("Deleting it allows you to enter a new task."),
+                                    buttons: [
+                                        .destructive(Text("Remove")){
+                                            self.isActive = false
+                                            timeRemaining = defaultTimeRemaining
+                                            //ここにリセットの処理を書いていくのでググって対応する
+                                        },
+                                        .cancel()
+                                    ]
+                                )
+                            })
+                            //ここまでがRemoveButtonの処理
 
+                        }
+                        .padding()
+                        .background(Color.white .edgesIgnoringSafeArea(.all))
+                    }
                 }
-                .padding()
-                .background(Color.white .edgesIgnoringSafeArea(.all))
+                //ここまでがTabView
             }
         }
-        //ここまでがTabView
-    }
-}
 
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+        struct ContentView_Previews: PreviewProvider {
+            static var previews: some View {
+                ContentView()
+            }
+        }
 
 
 //▼道筋(仮)
