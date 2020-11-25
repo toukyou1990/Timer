@@ -23,9 +23,9 @@ struct ContentView: View {
 
         ZStack() {
             Color
-            .black
-            .opacity(0.02)
-            .edgesIgnoringSafeArea(.top)
+                .black
+                .opacity(0.02)
+                .edgesIgnoringSafeArea(.top)
 
             VStack(){
                 //ここからサークルの表示と処理。
@@ -49,7 +49,6 @@ struct ContentView: View {
                 }.frame(width: radius * 2.5, height: radius * 2.5)
                 //ここまでサークルの表示と処理。処理をわける
 
-
                 //ここからmemoとTextFieldの処理
                 VStack(spacing: 0){
                     Text("Memo")
@@ -68,12 +67,11 @@ struct ContentView: View {
 
                     //ここまでmemoとTextFieldの処理
 
-
                     //ここからStartbutton
                     Button(action: {
-
+                        //Startの処理を書く
                     })
-                        {
+                    {
                         Text("Start!")
                             .padding(16)
                             .font(.system(size: 24, weight: .bold, design: .rounded))
