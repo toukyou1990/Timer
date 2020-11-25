@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-let defaultTimeRemaining: CGFloat = 60 //時間//
-let lineWith: CGFloat = 12 //円の太さ//
-let radius: CGFloat = 100 //円のサイズ//
+let defaultTimeRemaining: CGFloat = 60
+let lineWith: CGFloat = 12
+let radius: CGFloat = 100
 
 struct ContentView: View {
     @State private var isActive = false
@@ -21,15 +21,16 @@ struct ContentView: View {
     let timer = Timer.publish(every: 1, on: .main , in: .common).autoconnect()
     var body: some View {
         
-        ZStack {
-            
-            Color.black
-                .opacity(0.01)
-                .edgesIgnoringSafeArea(.all)
-            VStack(){
+        ZStack() {
+            Color
+            .black
+            .opacity(0.02)
+            .edgesIgnoringSafeArea(.top)
 
+            VStack(){
                 //ここからサークルの表示と処理。
                 ZStack{
+
                     Circle()
                         .stroke(Color.blue.opacity(0.2), style: StrokeStyle(lineWidth: lineWith, lineCap: .round))
                     Circle()
@@ -40,7 +41,6 @@ struct ContentView: View {
 
                     Text("\(Int(timeRemaining))")
                         .font(.system(size: 60, weight: .bold, design: .rounded))
-                        .foregroundColor(Color.black)
                         .multilineTextAlignment(.center)
                         .lineLimit(0)
                         .padding(.all)
@@ -56,19 +56,21 @@ struct ContentView: View {
                         .padding(.leading, 24)
                         .frame(maxWidth: .infinity, alignment: .leading)
 
-                    TextField("NextAction", text: $textField )
+                    TextField("NextAction", text: $textField)
                         .padding(.top, 8.0)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .font(.system(size: 32, weight: .bold, design: .rounded ))
                         .padding(.horizontal, 24)
+                       
                     //ここまでmemoとTextFieldの処理
 
 
                     //ここからStartbutton
                     Button(action: {
-                        self.isActive.toggle()
-                    }) {
-                        Text("Start!")
+
+                    })
+                        {
+                        Text("OK")
                             .padding(16)
                             .font(.system(size: 24, weight: .bold, design: .rounded))
                             .frame(maxWidth: .infinity)
@@ -76,6 +78,11 @@ struct ContentView: View {
                             .foregroundColor(Color.white)
                             .cornerRadius(10)
                             .padding([.top, .leading, .trailing], 24)
+                            .onTapGesture(perform: {
+                                isActive.toggle()
+                                self.isActive = true
+                                timeRemaining = defaultTimeRemaining
+                            })
                     }
                 }}
             //ここまでStartbutton
@@ -85,20 +92,19 @@ struct ContentView: View {
             VStack(spacing: 0) {
                 Spacer()
                 Rectangle()
-                    .frame(height: 0.25, alignment: .top)
-                    .foregroundColor(Color.gray)
-                Color.white
+                    .frame(height: 0.5, alignment: .top)
                     .edgesIgnoringSafeArea(.top)
+                    .foregroundColor(/*@START_MENU_TOKEN@*/.gray/*@END_MENU_TOKEN@*/)
                     .frame(height:0)
-                HStack {
 
+                HStack {
                     VStack(alignment: .leading) {
                         Button(action: {
                             self.showingModal.toggle()
                         }) {
                             Image(systemName: "info.circle")
                                 .resizable()
-                                .foregroundColor(.black)
+                                .foregroundColor(Color("Icon"))
                                 .frame(width: 24.0, height: 24.0, alignment: .leading)
                         }
                         .sheet(isPresented: $showingModal) {
@@ -106,7 +112,6 @@ struct ContentView: View {
                         }
                     }
                     Spacer()
-
 
                     //RemoveButtonの表示。このボタンにResetの効果を与えたい
                     Button(action: {
@@ -132,7 +137,7 @@ struct ContentView: View {
 
                 }
                 .padding()
-                .background(Color.white .edgesIgnoringSafeArea(.all))
+                .background(Color("white").edgesIgnoringSafeArea(.all))
             }
         }
         //ここまでがTabView
@@ -141,7 +146,11 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+            ContentView()
+                .preferredColorScheme(.dark)
+        }
     }
 }
 

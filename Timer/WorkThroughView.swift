@@ -51,11 +51,11 @@ struct CellView: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text(headline)
                     .font(.headline)
-                    .foregroundColor(.black)
                     .bold()
                 Text(discription)
                     .font(.body)
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color.gray)
+
             }
         }
     }

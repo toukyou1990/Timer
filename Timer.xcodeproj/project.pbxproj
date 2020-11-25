@@ -14,7 +14,6 @@
 		88A52F27256BF87800F613D7 /* WorkThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A52F26256BF87800F613D7 /* WorkThroughView.swift */; };
 		88A52F2A256BF97200F613D7 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A52F29256BF97200F613D7 /* RootView.swift */; };
 		88A52F30256C1CC700F613D7 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A52F2F256C1CC700F613D7 /* TabView.swift */; };
-		88A52F33256D66C400F613D7 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A52F32256D66C400F613D7 /* Timer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		88A52F26256BF87800F613D7 /* WorkThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkThroughView.swift; sourceTree = "<group>"; };
 		88A52F29256BF97200F613D7 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		88A52F2F256C1CC700F613D7 /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
-		88A52F32256D66C400F613D7 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +63,6 @@
 				88A52F29256BF97200F613D7 /* RootView.swift */,
 				8827EAB82565271300B76E26 /* ContentView.swift */,
 				88A52F26256BF87800F613D7 /* WorkThroughView.swift */,
-				88A52F32256D66C400F613D7 /* Timer.swift */,
 				8827EABA2565271300B76E26 /* Assets.xcassets */,
 				8827EABF2565271300B76E26 /* Info.plist */,
 				8827EABC2565271300B76E26 /* Preview Content */,
@@ -153,7 +150,6 @@
 				88A52F30256C1CC700F613D7 /* TabView.swift in Sources */,
 				8827EAB92565271300B76E26 /* ContentView.swift in Sources */,
 				88A52F2A256BF97200F613D7 /* RootView.swift in Sources */,
-				88A52F33256D66C400F613D7 /* Timer.swift in Sources */,
 				88A52F27256BF87800F613D7 /* WorkThroughView.swift in Sources */,
 				8827EAB72565271300B76E26 /* TimerApp.swift in Sources */,
 			);
