@@ -20,7 +20,7 @@ struct ContentView: View {
     @State private var showingModal = false
     let timer = Timer.publish(every: 1, on: .main , in: .common).autoconnect()
     var body: some View {
-        
+
         ZStack() {
             Color
             .black
@@ -31,9 +31,11 @@ struct ContentView: View {
                 //ここからサークルの表示と処理。
                 ZStack{
 
-                    Circle()
+
+                    Circle()//サークルのプログラミングを別で書く
                         .stroke(Color.blue.opacity(0.2), style: StrokeStyle(lineWidth: lineWith, lineCap: .round))
-                    Circle()
+
+                    Circle()//サークルのプログラミングを別で書く
                         .trim(from: 0, to: 1 - ((defaultTimeRemaining - timeRemaining) / defaultTimeRemaining))
                         .stroke(timeRemaining > 6 ? Color.blue : timeRemaining > 3 ? Color.yellow : Color.red , style: StrokeStyle(lineWidth: lineWith, lineCap: .round))
                         .rotationEffect(.degrees(-90))
@@ -57,11 +59,13 @@ struct ContentView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
 
                     TextField("NextAction", text: $textField)
-                        .padding(.top, 8.0)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.vertical, 8.0)
+                        .padding(.leading, 12.0)
                         .font(.system(size: 32, weight: .bold, design: .rounded ))
+                        .background(Color("TextField"))
+                        .cornerRadius(10)
                         .padding(.horizontal, 24)
-                       
+
                     //ここまでmemoとTextFieldの処理
 
 
@@ -70,7 +74,7 @@ struct ContentView: View {
 
                     })
                         {
-                        Text("OK")
+                        Text("Start!")
                             .padding(16)
                             .font(.system(size: 24, weight: .bold, design: .rounded))
                             .frame(maxWidth: .infinity)
@@ -160,3 +164,4 @@ struct ContentView_Previews: PreviewProvider {
 //- カウントダウンのカラーを30分以下で赤色
 //- テキスト入力後Startボタンをタップするとカウントダウン開始
 //- ResumeをDeleatボタンに変更。タップするとデリートダイアログが表示され(テキスト削除とカウントリセット)
+

@@ -113,10 +113,7 @@ struct DoneButton: View {
 
 struct DoneButton_Preview: PreviewProvider {
     static var previews: some View {
-        Group {
             DoneButton()
-                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
         }
     }
-}
 

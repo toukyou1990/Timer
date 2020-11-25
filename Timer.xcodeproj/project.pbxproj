@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8811B5F7256EF6220066C577 /* KeyboardObserving in Frameworks */ = {isa = PBXBuildFile; productRef = 8811B5F6256EF6220066C577 /* KeyboardObserving */; };
 		8827EAB72565271300B76E26 /* TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827EAB62565271300B76E26 /* TimerApp.swift */; };
 		8827EAB92565271300B76E26 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827EAB82565271300B76E26 /* ContentView.swift */; };
 		8827EABB2565271300B76E26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8827EABA2565271300B76E26 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8811B5F7256EF6220066C577 /* KeyboardObserving in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +96,9 @@
 			dependencies = (
 			);
 			name = Timer;
+			packageProductDependencies = (
+				8811B5F6256EF6220066C577 /* KeyboardObserving */,
+			);
 			productName = Timer;
 			productReference = 8827EAB32565271300B76E26 /* Timer.app */;
 			productType = "com.apple.product-type.application";
@@ -121,6 +126,9 @@
 				Base,
 			);
 			mainGroup = 8827EAAA2565271300B76E26;
+			packageReferences = (
+				8811B5F5256EF6220066C577 /* XCRemoteSwiftPackageReference "KeyboardObserving" */,
+			);
 			productRefGroup = 8827EAB42565271300B76E26 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -340,6 +348,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8811B5F5256EF6220066C577 /* XCRemoteSwiftPackageReference "KeyboardObserving" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nickffox/KeyboardObserving.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8811B5F6256EF6220066C577 /* KeyboardObserving */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8811B5F5256EF6220066C577 /* XCRemoteSwiftPackageReference "KeyboardObserving" */;
+			productName = KeyboardObserving;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8827EAAB2565271300B76E26 /* Project object */;
 }
