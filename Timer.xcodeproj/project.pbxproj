@@ -62,8 +62,8 @@
 			children = (
 				88A52F2F256C1CC700F613D7 /* TabView.swift */,
 				8827EAB62565271300B76E26 /* TimerApp.swift */,
-				88A52F29256BF97200F613D7 /* RootView.swift */,
 				8827EAB82565271300B76E26 /* ContentView.swift */,
+				88A52F29256BF97200F613D7 /* RootView.swift */,
 				88A52F26256BF87800F613D7 /* WorkThroughView.swift */,
 				8827EABA2565271300B76E26 /* Assets.xcassets */,
 				8827EABF2565271300B76E26 /* Info.plist */,

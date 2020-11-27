@@ -8,8 +8,8 @@
 import SwiftUI
 
 let defaultTimeRemaining: CGFloat = 60
-let lineWith: CGFloat = 12
-let radius: CGFloat = 100
+let lineWith: CGFloat = 14
+let radius: CGFloat = 90
 
 struct ContentView: View {
     @State private var isActive = false
@@ -18,7 +18,9 @@ struct ContentView: View {
     @State var timeString = ""
     @State var isShown = false
     @State private var showingModal = false
+
     let timer = Timer.publish(every: 1, on: .main , in: .common).autoconnect()
+
     var body: some View {
 
         ZStack() {
@@ -31,7 +33,6 @@ struct ContentView: View {
                 //ここからサークルの表示と処理。
                 ZStack{
 
-
                     Circle()//サークルのプログラミングを別で書く
                         .stroke(Color.blue.opacity(0.2), style: StrokeStyle(lineWidth: lineWith, lineCap: .round))
 
@@ -41,16 +42,21 @@ struct ContentView: View {
                         .rotationEffect(.degrees(-90))
                         .animation(.easeInOut)
 
+
                     Text("\(Int(timeRemaining))")
                         .font(.system(size: 60, weight: .bold, design: .rounded))
                         .multilineTextAlignment(.center)
                         .lineLimit(0)
                         .padding(.all)
-                }.frame(width: radius * 2.5, height: radius * 2.5)
+                }
+                .frame(width: radius * 2.5, height: radius * 2.5)
+                .padding(.top, 80.0)
+
+
                 //ここまでサークルの表示と処理。処理をわける
 
                 //ここからmemoとTextFieldの処理
-                VStack(spacing: 0){
+                VStack(){
                     Text("Memo")
                         .font(.system(size: 24, weight: .bold, design: .rounded ))
                         .multilineTextAlignment(.leading)
@@ -67,82 +73,96 @@ struct ContentView: View {
 
                     //ここまでmemoとTextFieldの処理
 
-                    //ここからStartbutton
-                    Button(action: {
-                        //Startの処理を書く
-                    })
-                    {
-                        Text("Start!")
-                            .padding(16)
-                            .font(.system(size: 24, weight: .bold, design: .rounded))
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .foregroundColor(Color.white)
-                            .cornerRadius(10)
-                            .padding([.top, .leading, .trailing], 24)
-                            .onTapGesture(perform: {
-                                isActive.toggle()
-                                self.isActive = true
-                                timeRemaining = defaultTimeRemaining
-                            })
-                    }
-                }}
-            //ここまでStartbutton
-
-
-            //TabViewを下部に画面いっぱいに表示
-            VStack(spacing: 0) {
+                }
                 Spacer()
-                Rectangle()
-                    .frame(height: 0.5, alignment: .top)
-                    .edgesIgnoringSafeArea(.top)
-                    .foregroundColor(/*@START_MENU_TOKEN@*/.gray/*@END_MENU_TOKEN@*/)
-                    .frame(height:0)
 
-                HStack {
-                    VStack(alignment: .leading) {
-                        Button(action: {
-                            self.showingModal.toggle()
-                        }) {
-                            Image(systemName: "info.circle")
-                                .resizable()
-                                .foregroundColor(Color("Icon"))
-                                .frame(width: 24.0, height: 24.0, alignment: .leading)
-                        }
-                        .sheet(isPresented: $showingModal) {
-                            WorkThroughView()
-                        }
-                    }
-                    Spacer()
 
-                    //RemoveButtonの表示。このボタンにResetの効果を与えたい
-                    Button(action: {
-                        self.isShown = true
-                    }) {
-                        Text("Remove")
-                            .foregroundColor(.red)
-                    }.actionSheet(isPresented: $isShown, content: {
-                        ActionSheet(
-                            title: Text("Remove the current task?"),
-                            message: Text("Deleting it allows you to enter a new task."),
-                            buttons: [
-                                .destructive(Text("Remove")){
-                                    self.isActive = false
-                                    timeRemaining = defaultTimeRemaining
-                                    //ここにリセットの処理を書いていくのでググって対応する
-                                },
-                                .cancel()
-                            ]
-                        )
-                    })
-                    //ここまでがRemoveButtonの処理
+                //ここからStartbutton
+                Button(action: {
+                    //Startの処理を書く
+                })
+                {
+                    Text("Start!")
+                        .padding(16)
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                        .onTapGesture(perform: {
+                            isActive.toggle()
+                            self.isActive = true
+                        })
 
                 }
-                .padding()
-                .background(Color("white").edgesIgnoringSafeArea(.all))
+                .padding(.horizontal, 24)
+                .padding(.vertical,40.0)
+                //ここまでStartbutton
+
+
+
+                VStack(spacing: 0) {
+
+                    Spacer()
+
+
+
+                    Rectangle()
+                        .frame(height: 0.5, alignment: .top)
+                        .edgesIgnoringSafeArea(.top)
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.gray/*@END_MENU_TOKEN@*/)
+
+
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Button(action: {
+                                self.showingModal.toggle()
+                            }) {
+                                Image(systemName: "info.circle")
+                                    .resizable()
+                                    .foregroundColor(Color("Icon"))
+                                    .frame(width: 24.0, height: 24.0, alignment: .leading)
+                            }
+                            .sheet(isPresented: $showingModal) {
+                                WorkThroughView()
+                            }
+                        }
+                        Spacer()
+
+                        //RemoveButtonの表示。このボタンにResetの効果を与えたい
+                        Button(action: {
+                            self.isShown = true
+                        }) {
+                            Text("Remove")
+                                .foregroundColor(.red)
+                        }.actionSheet(isPresented: $isShown, content: {
+                            ActionSheet(
+                                title: Text("Remove the current task?"),
+                                message: Text("Deleting it allows you to enter a new task."),
+                                buttons: [
+                                    .destructive(Text("Remove")){
+                                        self.isActive = false
+                                        timeRemaining = defaultTimeRemaining
+                                        //ここにリセットの処理を書いていくのでググって対応する
+                                    },
+                                    .cancel()
+                                ]
+                            )
+                        })
+                        //ここまでがRemoveButtonの処理
+
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, maxHeight: 60 ,alignment: .bottom)
+                    .background(Color("white").edgesIgnoringSafeArea(.all))
+                }
             }
+            //ここまでがTabView
+
         }
-        //ここまでがTabView
+        //TabViewを下部に画面いっぱいに表示
+
+
     }
 }
 
@@ -150,8 +170,8 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView()
-            ContentView()
-                .preferredColorScheme(.dark)
+            //      ContentView()
+            //        .preferredColorScheme(.dark)
         }
     }
 }
