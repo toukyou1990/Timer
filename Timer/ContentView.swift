@@ -14,7 +14,7 @@ let radius: CGFloat = 90
 struct ContentView: View {
     @State private var isActive = false
     @State private var timeRemaining: CGFloat = defaultTimeRemaining
-    @State private var textField: String = ""
+    @State private var textField = ""
     @State var timeString = ""
     @State var isShown = false
     @State private var showingModal = false
@@ -65,7 +65,7 @@ struct ContentView: View {
 
                     TextField("NextAction",
                               text: $textField,
-                              onEditingChanged: { _ in
+                              onCommit: {
                                 isDisabledButton = (textField.count == 0)
                               })
                         .padding(.vertical, 8.0)
