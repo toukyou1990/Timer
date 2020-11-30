@@ -14,10 +14,12 @@ let radius: CGFloat = 90
 struct ContentView: View {
     @State private var isActive = false
     @State private var timeRemaining: CGFloat = defaultTimeRemaining
-    @State private var textField = ""
+    @State private var textField: String = ""
     @State var timeString = ""
     @State var isShown = false
     @State private var showingModal = false
+    @State private var isStartTimer = false
+    @State private var isDisabledButton = true
 
     let timer = Timer.publish(every: 1, on: .main , in: .common).autoconnect()
 
@@ -61,7 +63,11 @@ struct ContentView: View {
                         .padding(.leading, 24)
                         .frame(maxWidth: .infinity, alignment: .leading)
 
-                    TextField("NextAction", text: $textField)
+                    TextField("NextAction",
+                              text: $textField,
+                              onEditingChanged: { _ in
+                                isDisabledButton = (textField.count == 0)
+                              })
                         .padding(.vertical, 8.0)
                         .padding(.leading, 12.0)
                         .font(.system(size: 32, weight: .bold, design: .rounded ))
@@ -71,6 +77,7 @@ struct ContentView: View {
 
 
                     //ここまでmemoとTextFieldの処理
+                    Text("入力文字数：\(self.textField.count) 文字")
 
                 }
 
@@ -79,9 +86,8 @@ struct ContentView: View {
 
                 //ここからStartbutton
                 Button(action: {
-                    //Startの処理を書く
-                })
-                {
+                    isStartTimer = true
+                }, label: {
                     Text("Start!")
                         .padding(16)
                         .font(.system(size: 24, weight: .bold, design: .rounded))
@@ -89,17 +95,14 @@ struct ContentView: View {
                         .background(Color.blue)
                         .foregroundColor(Color.white)
                         .cornerRadius(10)
-                        .onTapGesture(perform: {
-                            isActive.toggle()
-                            self.isActive = true
-                        })
-
+                })
+                .alert(isPresented: $isStartTimer) {
+                    Alert(title: Text("タイマー起動"), message: Text($textField.wrappedValue))
                 }
                 .padding(.horizontal, 24)
                 .padding(.top,160.0)
+                .disabled(isDisabledButton)
                 //ここまでStartbutton
-
-
 
                 VStack(spacing: 0) {
                     Spacer()

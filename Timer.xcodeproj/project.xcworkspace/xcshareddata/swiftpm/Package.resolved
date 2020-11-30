@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "KeyboardObserving",
+        "repositoryURL": "https://github.com/nickffox/KeyboardObserving.git",
+        "state": {
+          "branch": null,
+          "revision": "26c0c913c11f0ee77006740ca1d8b478d222184f",
+          "version": "0.3.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
