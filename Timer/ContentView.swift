@@ -26,7 +26,7 @@ struct ContentView: View {
         ZStack() {
             Color
                 .black
-                .opacity(0.02)
+                .opacity(0.03)
                 .edgesIgnoringSafeArea(.top)
 
             VStack(){
@@ -50,9 +50,7 @@ struct ContentView: View {
                         .padding(.all)
                 }
                 .frame(width: radius * 2.5, height: radius * 2.5)
-                .padding(.top, 80.0)
-
-
+                .padding(.top, 60.0)
                 //ここまでサークルの表示と処理。処理をわける
 
                 //ここからmemoとTextFieldの処理
@@ -71,10 +69,12 @@ struct ContentView: View {
                         .cornerRadius(10)
                         .padding(.horizontal, 24)
 
+
                     //ここまでmemoとTextFieldの処理
 
                 }
-                Spacer()
+
+
 
 
                 //ここからStartbutton
@@ -96,17 +96,13 @@ struct ContentView: View {
 
                 }
                 .padding(.horizontal, 24)
-                .padding(.vertical,40.0)
+                .padding(.top,160.0)
                 //ここまでStartbutton
 
 
 
                 VStack(spacing: 0) {
-
                     Spacer()
-
-
-
                     Rectangle()
                         .frame(height: 0.5, alignment: .top)
                         .edgesIgnoringSafeArea(.top)
