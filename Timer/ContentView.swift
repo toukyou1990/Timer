@@ -74,11 +74,7 @@ struct ContentView: View {
                         .background(Color("TextField"))
                         .cornerRadius(10)
                         .padding(.horizontal, 24)
-
-
                     //ここまでmemoとTextFieldの処理
-                    Text("入力文字数：\(self.textField.count) 文字")
-
                 }
 
 
