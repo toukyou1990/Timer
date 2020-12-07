@@ -52,7 +52,14 @@ struct ContentView: View {
                 .frame(width: radius * 2.5, height: radius * 2.5)
                 .padding(.top, 60.0)
                 //ここまでサークルの表示と処理。処理をわける
-
+                .onReceive(timer, perform: { _ in guard isActive else { return }
+                                    if timeRemaining > 0 {
+                                        timeRemaining -= 1
+                                    } else {
+                                        isActive = false
+                                        timeRemaining = defaultTimeRemaining
+                                }
+                            })
                 //ここからmemoとTextFieldの処理
                 VStack(){
                     Text("Memo")
@@ -140,8 +147,7 @@ struct ContentView: View {
                                         self.isActive = false
                                         timeRemaining = defaultTimeRemaining
                                         //ここにリセットの処理を書いていくのでググって対応する
-                                    },
-                                    .cancel()
+                                    }, .cancel()
                                 ]
                             )
                         })
@@ -176,6 +182,5 @@ struct ContentView_Previews: PreviewProvider {
 //▼道筋(仮)
 //- 60秒のカウントダウンを3時間に変更
 //- カウントダウンのカラーを30分以下で赤色
-//- テキスト入力後Startボタンをタップするとカウントダウン開始
 //- ResumeをDeleatボタンに変更。タップするとデリートダイアログが表示され(テキスト削除とカウントリセット)
 
