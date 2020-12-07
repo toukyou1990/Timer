@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let defaultTimeRemaining: CGFloat = 60
+let defaultTimeRemaining: CGFloat = 3600
 let lineWith: CGFloat = 14
 let radius: CGFloat = 90
 
@@ -146,7 +146,7 @@ struct ContentView: View {
                                     .destructive(Text("Remove")){
                                         self.isActive = false
                                         timeRemaining = defaultTimeRemaining
-                                        //ここにリセットの処理を書いていくのでググって対応する
+
                                     }, .cancel()
                                 ]
                             )
