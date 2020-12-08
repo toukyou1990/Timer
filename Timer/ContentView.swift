@@ -53,13 +53,14 @@ struct ContentView: View {
                 .padding(.top, 60.0)
                 //ここまでサークルの表示と処理。処理をわける
                 .onReceive(timer, perform: { _ in guard isActive else { return }
-                                    if timeRemaining > 0 {
-                                        timeRemaining -= 1
-                                    } else {
-                                        isActive = false
-                                        timeRemaining = defaultTimeRemaining
-                                }
-                            })
+                    if timeRemaining > 0 {
+                        timeRemaining -= 1
+                    } else {
+                        isActive = false
+                        timeRemaining = defaultTimeRemaining
+
+                    }
+                })
                 //ここからmemoとTextFieldの処理
                 VStack(){
                     Text("Memo")
@@ -75,8 +76,6 @@ struct ContentView: View {
                         .background(Color("TextField"))
                         .cornerRadius(10)
                         .padding(.horizontal, 24)
-
-
                     //ここまでmemoとTextFieldの処理
 
                 }
@@ -146,7 +145,7 @@ struct ContentView: View {
                                     .destructive(Text("Remove")){
                                         self.isActive = false
                                         timeRemaining = defaultTimeRemaining
-
+                                        self.textField = ""
                                     }, .cancel()
                                 ]
                             )
