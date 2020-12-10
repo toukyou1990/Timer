@@ -19,7 +19,7 @@
 		8827EAB92565271300B76E26 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827EAB82565271300B76E26 /* ContentView.swift */; };
 		8827EABB2565271300B76E26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8827EABA2565271300B76E26 /* Assets.xcassets */; };
 		8827EABE2565271300B76E26 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8827EABD2565271300B76E26 /* Preview Assets.xcassets */; };
-		88A52F27256BF87800F613D7 /* WorkThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A52F26256BF87800F613D7 /* WorkThroughView.swift */; };
+		88A52F27256BF87800F613D7 /* Walkthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A52F26256BF87800F613D7 /* Walkthrough.swift */; };
 		88A52F2A256BF97200F613D7 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A52F29256BF97200F613D7 /* RootView.swift */; };
 		88A52F30256C1CC700F613D7 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A52F2F256C1CC700F613D7 /* TabView.swift */; };
 /* End PBXBuildFile section */
@@ -62,7 +62,7 @@
 		8827EABA2565271300B76E26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8827EABD2565271300B76E26 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8827EABF2565271300B76E26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88A52F26256BF87800F613D7 /* WorkThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkThroughView.swift; sourceTree = "<group>"; };
+		88A52F26256BF87800F613D7 /* Walkthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Walkthrough.swift; sourceTree = "<group>"; };
 		88A52F29256BF97200F613D7 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		88A52F2F256C1CC700F613D7 /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,11 +130,10 @@
 		8827EAB52565271300B76E26 /* Timer */ = {
 			isa = PBXGroup;
 			children = (
-				88A52F2F256C1CC700F613D7 /* TabView.swift */,
+				C39DD67C2582488300910E18 /* Resources */,
+				C39DD67B2582487500910E18 /* Model */,
+				C39DD678258245B300910E18 /* Views */,
 				8827EAB62565271300B76E26 /* TimerApp.swift */,
-				8827EAB82565271300B76E26 /* ContentView.swift */,
-				88A52F29256BF97200F613D7 /* RootView.swift */,
-				88A52F26256BF87800F613D7 /* WorkThroughView.swift */,
 				8827EABA2565271300B76E26 /* Assets.xcassets */,
 				8827EABF2565271300B76E26 /* Info.plist */,
 				8827EABC2565271300B76E26 /* Preview Content */,
@@ -148,6 +147,31 @@
 				8827EABD2565271300B76E26 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C39DD678258245B300910E18 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				88A52F26256BF87800F613D7 /* Walkthrough.swift */,
+				88A52F2F256C1CC700F613D7 /* TabView.swift */,
+				8827EAB82565271300B76E26 /* ContentView.swift */,
+				88A52F29256BF97200F613D7 /* RootView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C39DD67B2582487500910E18 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C39DD67C2582488300910E18 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,7 +293,7 @@
 				8827EAB92565271300B76E26 /* ContentView.swift in Sources */,
 				880CA2A025756BFE00CA6532 /* TimerWidget.intentdefinition in Sources */,
 				88A52F2A256BF97200F613D7 /* RootView.swift in Sources */,
-				88A52F27256BF87800F613D7 /* WorkThroughView.swift in Sources */,
+				88A52F27256BF87800F613D7 /* Walkthrough.swift in Sources */,
 				8827EAB72565271300B76E26 /* TimerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
