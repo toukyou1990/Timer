@@ -11,6 +11,7 @@ let defaultTimeRemaining: CGFloat = 3600
 let lineWith: CGFloat = 14
 let radius: CGFloat = 90
 
+
 struct ContentView: View {
     @State private var isActive = false
     @State private var timeRemaining: CGFloat = defaultTimeRemaining
@@ -20,8 +21,11 @@ struct ContentView: View {
     @State private var showingModal = false
 
     let timer = Timer.publish(every: 1, on: .main , in: .common).autoconnect()
+    @AppStorage("isFirstLaunch") var isFirstLaunch = true
 
     var body: some View {
+
+
 
         ZStack() {
             Color
@@ -63,7 +67,7 @@ struct ContentView: View {
                 })
                 //ここからmemoとTextFieldの処理
                 VStack(){
-                    Text("Memo")
+                    Text("TaskName")
                         .font(.system(size: 24, weight: .bold, design: .rounded ))
                         .multilineTextAlignment(.leading)
                         .padding(.leading, 24)
@@ -77,7 +81,6 @@ struct ContentView: View {
                         .cornerRadius(10)
                         .padding(.horizontal, 24)
                     //ここまでmemoとTextFieldの処理
-
                 }
 
 
@@ -85,7 +88,6 @@ struct ContentView: View {
 
                 //ここからStartbutton
                 Button(action: {
-                    //Startの処理を書く
                 })
                 {
                     Text("Start!")
@@ -99,13 +101,10 @@ struct ContentView: View {
                             isActive.toggle()
                             self.isActive = true
                         })
-
                 }
                 .padding(.horizontal, 24)
-                .padding(.top,160.0)
+                .padding(.top,90)
                 //ここまでStartbutton
-
-
 
                 VStack(spacing: 0) {
                     Spacer()
@@ -153,6 +152,7 @@ struct ContentView: View {
                         //ここまでがRemoveButtonの処理
 
                     }
+
                     .padding()
                     .frame(maxWidth: .infinity, maxHeight: 60 ,alignment: .bottom)
                     .background(Color("white").edgesIgnoringSafeArea(.all))
@@ -163,9 +163,14 @@ struct ContentView: View {
         }
         //TabViewを下部に画面いっぱいに表示
 
+        .sheet(isPresented: $isFirstLaunch) {
+            WorkThroughView()
+        }
 
     }
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -181,5 +186,5 @@ struct ContentView_Previews: PreviewProvider {
 //▼道筋(仮)
 //- 60秒のカウントダウンを3時間に変更
 //- カウントダウンのカラーを30分以下で赤色
-//- ResumeをDeleatボタンに変更。タップするとデリートダイアログが表示され(テキスト削除とカウントリセット)
+
 

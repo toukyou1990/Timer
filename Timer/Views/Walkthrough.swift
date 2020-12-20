@@ -99,7 +99,8 @@ struct DoneButton: View {
     var body: some View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
-        }) {
+        }
+        ) {
             Text("OK")
                 .bold()
                 .foregroundColor(.white)
@@ -110,6 +111,7 @@ struct DoneButton: View {
         .cornerRadius(10)
     }
 }
+
 
 struct DoneButton_Preview: PreviewProvider {
     static var previews: some View {
