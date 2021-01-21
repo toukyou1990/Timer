@@ -113,12 +113,14 @@ struct ContentView: View {
                         .edgesIgnoringSafeArea(.top)
                         .foregroundColor(/*@START_MENU_TOKEN@*/.gray/*@END_MENU_TOKEN@*/)
 
-
+                    //InfoButtonの表示。ウォークスルーを表示させた
                     HStack {
                         VStack(alignment: .leading) {
+
                             Button(action: {
-                                self.showingModal.toggle()
-                            }) {
+                            self.showingModal.toggle()
+                        })
+                           {
                                 Image(systemName: "info.circle")
                                     .resizable()
                                     .foregroundColor(Color("Icon"))
